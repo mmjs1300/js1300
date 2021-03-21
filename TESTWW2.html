@@ -1,0 +1,171 @@
+<Html>
+	<head>
+		<title>THEMATIC TEST</title>
+	</head>
+	<body>
+		<label>
+			Имя: 
+		</label>
+		<input type="text" id="firstName">
+		<label>
+		Фамилия: 
+		</label>
+		<input type="text" id="lastName">
+		<label>
+		Возраст: 
+		</label>
+		<input type="text" id="Year">
+		<p>
+			В каком году началась вторая мировая война?
+		</p>
+		<input type="text" id="r1">
+		<br>
+		<p>
+			В каких годах была вторая мировая война?
+		</p>
+		<input type="checkbox" id="r21"> 1940
+		<br>
+		<input type="checkbox" id="r22"> 1946
+		<br>
+		<input type="checkbox" id="r23"> 1939
+		<br>
+		<input type="checkbox" id="r24"> 1938
+		<br>
+		<p>
+			В каком году закончилась вторая мировая война?
+		</p>
+			<input type="radio" name="q3" id="r31">1939
+			<br>
+			<input type="radio" name="q3" id="r32">1943
+			<br>
+			<input type="radio" name="q3" id="r33">1946
+			<br>
+			<input type="radio" name="q3" id="r34">1945
+		<p>
+			Когда закончилась блокада Ленинграда?
+		</p>
+		<select id="r4">
+			<option>
+			1941
+			</option>
+			<option>
+			1942
+			</option>
+			<option>
+			1943
+			</option>
+			<option>
+			1944
+			</option>
+		</select>
+		<p>
+		Какого цвета был флаг Союза Советских Социалистических Республик?
+		</p>
+		<input type="color" id="r5">
+		
+			<p>
+			Назовите дату рождения фюрера.
+		</p>
+			<input type="radio" name="q6" id="r61">20 апреля 1889 г
+			<br>
+			<input type="radio" name="q6">30 июня 1879 г
+			<br>
+			<input type="radio" name="q6">1 мая 1880 г
+			<br>
+			<input type="radio" name="q6">24 августа 1894 г
+		<p>
+			Назовите отчество Иосифа Сталина.
+		</p>
+		<input type="text" id="r71">
+		<p>
+			Назовите настоящую фамилию Владимира Ильича Ленина.
+		</p>
+		<Input type="password" id="r81">
+		<p>
+			Сколько солдат участвовало во второй мировой войне?
+		</p>
+		<select id="r91">
+			<option>
+			36 736 944
+			</option>
+			<option>
+			34 476 700
+			</option>
+			<option>
+			28 936 256
+			</option>
+			<option>
+			42 743 914
+			</option>
+			</select>
+			<br>
+		<p>
+			Любимая еда Сталина.
+		</p>
+			<input type="radio" name="q7">Халум
+			<br>
+			<input type="radio" name="q7">Манты
+			<br>
+			<input type="radio" name="q7" id="r10">Шашлык
+			<br>
+			<input type="radio" name="q7">Чахохбили
+		<br>
+		<br>
+		<input type="button" value="Проверить" onclick="checkTest()">
+		<p id="testresult"></p>
+		<progress id="progressBar" max="100" value="0"></progress>
+
+		<script>
+		    let currentProgress = 0;
+			function checkTest () {
+			const k = 10;
+				let result = 0;
+				if  (r1.value === "1939") {
+					result += 1;
+				}
+				if  (r21.checked && r23.checked && !r22.checked && !r24.checked) {
+					result += 1;
+				}
+				if  (r34.checked) {
+				result += 1;
+				}
+				if  (r4.value === "1944") {
+					result += 1;
+					}
+				if  (r5.value === "#ff0000") {
+					result += 1;
+					}
+				if  (r61.checked) {
+				result += 1;
+				}
+				
+				if  (r71.value === "Виссарионович") {
+				result += 1;
+				}
+				if  (r81.value === "Ульянов") {
+				result += 1;
+				}
+				if  (r91.value === "34 476 700") {
+				result += 1;
+				}
+				if  (r10.checked) {
+				result += 1;
+				}						
+				const newProgress = result / k *100
+					const intervalid = setInterval(function () {
+					if (currentProgress !== newProgress) {
+						if (newProgress > currentProgress) {
+							currentProgress+=1;
+						} else if (newProgress < currentProgress) {
+							currentProgress-=1;
+						}
+						progressBar.value = currentProgress;
+					} else {
+					clearInterval(intervalid);
+					}
+					}, 50)
+					testresult.innerText = "Всеобщеувожаемый " + firstName.value + " " + lastName.value + ", Вы набрали " + result + "из" + k + " баллов.";
+			}
+		</script>
+	</body>
+</Html>
